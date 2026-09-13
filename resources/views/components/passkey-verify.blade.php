@@ -36,7 +36,7 @@
                 Livewire.navigate(response.redirect || '/dashboard');
             } catch (e) {
                 if (e.constructor?.name !== 'UserCancelledError') {
-                    this.error = e.message;
+                    this.error = window.localizedPasskeyError(e);
                 }
             } finally {
                 this.loading = false;

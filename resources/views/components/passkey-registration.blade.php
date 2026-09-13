@@ -52,7 +52,7 @@
                 await $wire.loadPasskeys();
             } catch (e) {
                 if (e.constructor?.name !== 'UserCancelledError') {
-                    this.error = e.message;
+                    this.error = window.localizedPasskeyError(e);
                 }
             } finally {
                 this.loading = false;

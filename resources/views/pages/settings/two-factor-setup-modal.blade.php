@@ -57,7 +57,7 @@ new class extends Component {
             $this->qrCodeSvg = $user->twoFactorQrCodeSvg();
             $this->manualSetupKey = decrypt($user->two_factor_secret);
         } catch (Exception) {
-            $this->addError('setupData', 'Failed to fetch setup data.');
+            $this->addError('setupData', __('Failed to fetch setup data.'));
 
             $this->reset('qrCodeSvg', 'manualSetupKey');
         }
@@ -194,7 +194,8 @@ new class extends Component {
                             name="code"
                             wire:model="code"
                             length="6"
-                            label="OTP Code"
+                            :label="__('OTP Code')"
+                            dir="ltr"
                             label:sr-only
                             class="mx-auto"
                         />
@@ -286,13 +287,14 @@ new class extends Component {
                                 <input
                                     type="text"
                                     readonly
-                                    value="{{ $manualSetupKey }}"
+                                    value="{{ $manualSetupKey }}" dir="ltr" aria-label="{{ __('Authentication code') }}"
                                     class="w-full p-3 bg-transparent outline-none text-stone-900 dark:text-stone-100"
                                 />
 
                                 <button
                                     @click="copy()"
-                                    class="px-3 transition-colors border-l cursor-pointer border-stone-200 dark:border-stone-600"
+                                    aria-label="{{ __('Copy setup key') }}"
+                                    class="px-3 transition-colors border-s cursor-pointer border-stone-200 dark:border-stone-600"
                                 >
                                     <flux:icon.document-duplicate x-show="!copied" variant="outline"></flux:icon>
                                     <flux:icon.check

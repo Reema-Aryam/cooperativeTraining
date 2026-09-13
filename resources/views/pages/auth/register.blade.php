@@ -24,7 +24,7 @@
                 name="email"
                 :label="__('Email address')"
                 :value="old('email')"
-                type="email"
+                type="email" dir="ltr"
                 required
                 autocomplete="email"
                 placeholder="email@example.com"
