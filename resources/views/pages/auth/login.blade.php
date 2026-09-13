@@ -1,24 +1,33 @@
 <x-layouts::auth :title="__('Log in')">
+    @php
+        $demoLogin = config('training.demo_login');
+    @endphp
     <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
+        <x-auth-header :title="__('Log in to your account')" :description="$demoLogin ? __('Preview the portal without entering login details') : __('Enter your email and password below to log in')" />
 
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
 
         {{-- @chisel-passkeys --}}
-        <x-passkey-verify />
+        @unless ($demoLogin)
+            <x-passkey-verify />
+        @endunless
         {{-- @end-chisel-passkeys --}}
 
-        <form method="POST" action="{{ route('login.store') }}" class="flex flex-col gap-6">
-            @csrf
+        @if ($demoLogin)
+            <div class="flex flex-col gap-6" data-test="demo-login">
+        @else
+            <form method="POST" action="{{ route('login.store') }}" class="flex flex-col gap-6">
+                @csrf
+        @endif
 
             <!-- Email Address -->
             <flux:input
                 name="email"
                 :label="__('Email address')"
                 :value="old('email')"
-                type="email"
-                required
+                type="email" dir="ltr"
+                :required="! $demoLogin"
                 autofocus
                 autocomplete="email"
                 placeholder="email@example.com"
@@ -30,7 +39,7 @@
                     name="password"
                     :label="__('Password')"
                     type="password"
-                    required
+                    :required="! $demoLogin"
                     autocomplete="current-password"
                     :placeholder="__('Password')"
                     viewable
@@ -47,11 +56,15 @@
             <flux:checkbox name="remember" :label="__('Remember me')" :checked="old('remember')" />
 
             <div class="flex items-center justify-end">
-                <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
+                <flux:button variant="primary" :href="$demoLogin ? route('home') : null" :type="$demoLogin ? 'button' : 'submit'" class="w-full" data-test="login-button">
                     {{ __('Log in') }}
                 </flux:button>
             </div>
-        </form>
+        @if ($demoLogin)
+            </div>
+        @else
+            </form>
+        @endif
 
         {{-- @chisel-registration --}}
         <div class="space-x-1 text-sm text-center rtl:space-x-reverse text-zinc-600 dark:text-zinc-400">
