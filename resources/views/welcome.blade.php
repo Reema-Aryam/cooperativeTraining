@@ -25,6 +25,11 @@
                     <a href="#opportunities">{{ __('site.training_opportunities') }}</a>
                     <a href="#journey">{{ __('site.trainee_journey') }}</a>
                     <a href="#faq">{{ __('site.faq') }}</a>
+                    @auth
+                        @if (auth()->user()->role !== 'admin')
+                            <a href="#health-centers">المراكز الصحية</a>
+                        @endif
+                    @endauth
                 </nav>
                 @if (Route::has('login'))
                     <a class="button button-outline header-login" href="{{ route('login') }}">{{ __('site.login') }} <flux:icon.user-circle class="size-5 shrink-0" /></a>
@@ -34,6 +39,11 @@
                     <summary aria-label="{{ __('site.open_navigation') }}"><span></span><span></span><span></span></summary>
                     <nav aria-label="{{ __('site.mobile_navigation') }}">
                         <a href="#home">{{ __('site.home') }}</a><a href="#about">{{ __('site.about_training') }}</a><a href="#opportunities">{{ __('site.training_opportunities') }}</a><a href="#journey">{{ __('site.trainee_journey') }}</a>
+                        @auth
+                            @if (auth()->user()->role !== 'admin')
+                                <a href="#health-centers">المراكز الصحية</a>
+                            @endif
+                        @endauth
                         @if (Route::has('login'))<a href="{{ route('login') }}">{{ __('site.login') }}</a>@endif
                     </nav>
                 </details>
@@ -94,6 +104,36 @@
                     <div class="about-copy"><p>{{ __('site.about_description') }}</p><a class="text-link dark" href="#journey">{{ __('site.discover_journey') }} <span class="direction-arrow" aria-hidden="true">←</span></a></div>
                 </div>
             </section>
+
+            @auth
+                @if (auth()->user()->role !== 'admin')
+                    <section class="section assembly-section" id="health-centers">
+                        <div class="assembly-page">
+                            <div class="assembly-heading">
+                                <div>
+                                    <p class="assembly-kicker">التجمع الصحي الثاني بالرياض</p>
+                                    <h2>المراكز الصحية</h2>
+                                    <p class="assembly-intro">دليل المراكز الصحية مرتبًا حسب المنطقة والنطاق والمحافظة.</p>
+                                </div>
+                                <div class="assembly-count">{{ count($centers) }} مركزًا صحيًا</div>
+                            </div>
+                            <div class="assembly-table-wrap">
+                                <table class="assembly-table">
+                                    <caption class="sr-only">قائمة المراكز الصحية التابعة للتجمع الصحي الثاني بالرياض</caption>
+                                    <thead>
+                                        <tr><th>المنطقة/المحافظة/<br>التجمع الصحي</th><th>المحافظة</th><th>النطاق</th><th>اسم المركز</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($centers as $center)
+                                            <tr data-scope="{{ $center['scope'] }}"><td>{{ $center['assembly'] }}</td><td>{{ $center['governorate'] }}</td><td><span class="scope-badge">{{ $center['scope'] }}</span></td><td>{{ $center['name'] }}</td></tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                @endif
+            @endauth
 
             <section class="section journey-section" id="journey">
                 <div class="page-shell">
