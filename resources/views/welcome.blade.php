@@ -12,43 +12,7 @@
     <body class="prototype-home">
         <a class="skip-link" href="#main-content">{{ __('site.skip_content') }}</a>
 
-        <header class="site-header">
-            <div class="page-shell header-inner">
-                <a href="{{ route('home') }}" class="brand" aria-label="{{ __('site.home_label') }}">
-                    <img class="brand-logo" src="{{ asset('images/rshc-logo.png') }}" alt="{{ __('site.organization') }}" width="1658" height="470">
-                    <span class="brand-divider" aria-hidden="true"></span>
-                    <span class="brand-copy"><strong>{{ __('site.name') }}</strong><small>{{ __('site.tagline') }}</small></span>
-                </a>
-                <nav class="desktop-nav" aria-label="{{ __('site.main_navigation') }}">
-                    <a class="is-active" href="#home">{{ __('site.home') }}</a>
-                    <a href="#about">{{ __('site.about_training') }}</a>
-                    <a href="#opportunities">{{ __('site.training_opportunities') }}</a>
-                    <a href="#journey">{{ __('site.trainee_journey') }}</a>
-                    <a href="#faq">{{ __('site.faq') }}</a>
-                    @auth
-                        @if (auth()->user()->role !== 'admin')
-                            <a href="#health-centers">المراكز الصحية</a>
-                        @endif
-                    @endauth
-                </nav>
-                @if (Route::has('login'))
-                    <a class="button button-outline header-login" href="{{ route('login') }}">{{ __('site.login') }} <flux:icon.user-circle class="size-5 shrink-0" /></a>
-                @endif
-                <x-language-switcher />
-                <details class="mobile-menu">
-                    <summary aria-label="{{ __('site.open_navigation') }}"><span></span><span></span><span></span></summary>
-                    <nav aria-label="{{ __('site.mobile_navigation') }}">
-                        <a href="#home">{{ __('site.home') }}</a><a href="#about">{{ __('site.about_training') }}</a><a href="#opportunities">{{ __('site.training_opportunities') }}</a><a href="#journey">{{ __('site.trainee_journey') }}</a>
-                        @auth
-                            @if (auth()->user()->role !== 'admin')
-                                <a href="#health-centers">المراكز الصحية</a>
-                            @endif
-                        @endauth
-                        @if (Route::has('login'))<a href="{{ route('login') }}">{{ __('site.login') }}</a>@endif
-                    </nav>
-                </details>
-            </div>
-        </header>
+        @include('partials.site-header')
 
         <main id="main-content">
             <section class="home-intro" id="home" aria-label="{{ __('site.home') }}">

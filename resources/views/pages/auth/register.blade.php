@@ -10,13 +10,13 @@
             <!-- Name -->
             <flux:input
                 name="name"
-                :label="__('Name')"
+                :label="__('User Name')"
                 :value="old('name')"
                 type="text"
                 required
                 autofocus
                 autocomplete="name"
-                :placeholder="__('Full name')"
+                :placeholder="__('User Name')"
             />
 
             <!-- Email Address -->
@@ -51,6 +51,26 @@
                 autocomplete="new-password"
                 :placeholder="__('Confirm password')"
                 passwordrules="{{ \Illuminate\Validation\Rules\Password::defaults()->toPasswordRulesString() }}"
+                viewable
+            />
+
+            <!-- Security Question -->
+            <flux:input
+                name="security_question"
+                :label="__('Security Question')"
+                :value="old('security_question')"
+                type="text"
+                required
+                autocomplete="off"
+            />
+
+            <!-- Security Answer -->
+            <flux:input
+                name="security_answer"
+                :label="__('Security Answer')"
+                type="password"
+                required
+                autocomplete="off"
                 viewable
             />
 

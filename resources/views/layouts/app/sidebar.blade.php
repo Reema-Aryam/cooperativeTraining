@@ -12,9 +12,11 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </flux:sidebar.item>
+                    @if (auth()->user()->role === 'admin')
+                        <flux:sidebar.item icon="clipboard-document-list" :href="route('admin.training-applications.index')" :current="request()->routeIs('admin.training-applications.*')" wire:navigate>{{ __('Training applications') }}</flux:sidebar.item>
+                    @else
+                        <flux:sidebar.item icon="document-text" :href="route('training.application')" :current="request()->routeIs('training.application*')" wire:navigate>{{ __('Training application') }}</flux:sidebar.item>
+                    @endif
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
@@ -67,9 +69,8 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
-                            {{ __('Settings') }}
-                        </flux:menu.item>
+                        <flux:menu.item :href="route('training.profile')" icon="user-circle" wire:navigate>{{ __('Personal profile') }}</flux:menu.item>
+                        <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
@@ -90,7 +91,8 @@
             </flux:dropdown>
         </flux:header>
 
-        {{ $slot }}
+        <main class="min-h-[calc(100vh-8rem)]">{{ $slot }}</main>
+        <footer class="border-t border-[var(--brand-line)] bg-[var(--brand-paper)] px-6 py-5 text-center text-sm text-[var(--brand-muted)]">{{ __('site.organization') }} · {{ __('site.name') }}</footer>
 
         @persist('toast')
             <flux:toast.group>

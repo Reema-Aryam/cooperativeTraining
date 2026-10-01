@@ -3562,3 +3562,24 @@
 #82 C:/CooperativeTraining/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('C://CooperativeT...')
 #83 {main}
 "} 
+[2026-10-01 19:04:18] local.DEBUG: From: =?utf-8?Q?=D8=A8=D9=88=D8=A7=D8=A8=D8=A9_=D8=A7=D9=84?=
+ =?utf-8?Q?=D8=AA=D8=AF=D8=B1=D9=8A=D8=A8_=D8=A7=D9=84?=
+ =?utf-8?Q?=D8=AA=D8=B9=D8=A7=D9=88=D9=86=D9=8A?= <hello@example.com>
+To: ali@gmail.com
+Subject: =?utf-8?Q?=D8=A7=D9=84=D9=82=D8=B1=D8=A7=D8=B1_=D8=A8?=
+ =?utf-8?Q?=D8=B4=D8=A3=D9=86_=D8=B7=D9=84=D8=A8_=D8=A7=D9=84=D8=AA=D8=AF?=
+ =?utf-8?Q?=D8=B1=D9=8A=D8=A8?=
+MIME-Version: 1.0
+Date: Thu, 01 Oct 2026 19:04:17 +0000
+Message-ID: <1f482f8b96245b1dba5d8facbaf8559e@example.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<div style="font-family:Arial,sans-serif;line-height:1.7;max-width:640px;margin:auto;color:#173245">
+    <h1>القرار بشأن طلب التدريب</h1>
+    <p>مرحبًا فهد عبدالله جاسر الفهد,</p>
+    <p>أصبحت حالة طلب التدريب التعاوني رقم CT-2026-FVMEO2X2 هي: مقبول</p>
+    <p><strong>ملاحظة القرار:</strong> تم تم القبول</p>    <p>يمكنك تسجيل الدخول إلى بوابة التدريب للاطلاع على طلبك.</p>
+    <p>تجمع الرياض الصحي الثاني</p>
+</div>
+  
