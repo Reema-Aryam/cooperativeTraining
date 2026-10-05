@@ -12,7 +12,7 @@ class LoginResponse implements LoginResponseContract
     {
         /** @var Request $request */
         $destination = $request->user()?->role === 'admin'
-            ? route('dashboard')
+            ? route('admin.training-applications.index')
             : route('home');
 
         return redirect()->to($destination);

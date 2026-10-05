@@ -25,6 +25,7 @@
             </flux:toast.group>
         @endpersist
 
+        @include('partials.chatbot')
         @fluxScripts
     </body>
 </html>
