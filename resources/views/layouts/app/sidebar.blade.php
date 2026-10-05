@@ -12,6 +12,7 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
+                    <flux:sidebar.item icon="building-office-2" :href="route('health-centers.index')" :current="request()->routeIs('health-centers.*')" wire:navigate>{{ __('health-centers.title') }}</flux:sidebar.item>
                     @if (auth()->user()->role === 'admin')
                         <flux:sidebar.item icon="clipboard-document-list" :href="route('admin.training-applications.index')" :current="request()->routeIs('admin.training-applications.*')" wire:navigate>{{ __('Training applications') }}</flux:sidebar.item>
                     @else

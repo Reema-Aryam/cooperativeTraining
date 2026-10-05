@@ -69,35 +69,6 @@
                 </div>
             </section>
 
-            @auth
-                @if (auth()->user()->role !== 'admin')
-                    <section class="section assembly-section" id="health-centers">
-                        <div class="assembly-page">
-                            <div class="assembly-heading">
-                                <div>
-                                    <p class="assembly-kicker">التجمع الصحي الثاني بالرياض</p>
-                                    <h2>المراكز الصحية</h2>
-                                    <p class="assembly-intro">دليل المراكز الصحية مرتبًا حسب المنطقة والنطاق والمحافظة.</p>
-                                </div>
-                                <div class="assembly-count">{{ count($centers) }} مركزًا صحيًا</div>
-                            </div>
-                            <div class="assembly-table-wrap">
-                                <table class="assembly-table">
-                                    <caption class="sr-only">قائمة المراكز الصحية التابعة للتجمع الصحي الثاني بالرياض</caption>
-                                    <thead>
-                                        <tr><th>المنطقة/المحافظة/<br>التجمع الصحي</th><th>المحافظة</th><th>النطاق</th><th>اسم المركز</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($centers as $center)
-                                            <tr data-scope="{{ $center['scope'] }}"><td>{{ $center['assembly'] }}</td><td>{{ $center['governorate'] }}</td><td><span class="scope-badge">{{ $center['scope'] }}</span></td><td>{{ $center['name'] }}</td></tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-                @endif
-            @endauth
 
             <section class="section journey-section" id="journey">
                 <div class="page-shell">

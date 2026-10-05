@@ -7,6 +7,7 @@
         </a>
         <nav class="desktop-nav" aria-label="{{ __('site.main_navigation') }}">
             @auth
+                <a @class(['is-active' => request()->routeIs('health-centers.*')]) href="{{ route('health-centers.index') }}">{{ __('health-centers.title') }}</a>
                 @if (auth()->user()->role === 'admin')
                     <a @class(['is-active' => request()->routeIs('admin.training-applications.*')]) href="{{ route('admin.training-applications.index') }}">{{ __('Training applications') }}</a>
                 @else
@@ -44,6 +45,7 @@
                 <summary aria-label="{{ __('site.open_navigation') }}"><span></span><span></span><span></span></summary>
                 <nav aria-label="{{ __('site.mobile_navigation') }}">
                     @auth
+                        <a @class(['is-active' => request()->routeIs('health-centers.*')]) href="{{ route('health-centers.index') }}">{{ __('health-centers.title') }}</a>
                         @if (auth()->user()->role === 'admin')
                             <a href="{{ route('admin.training-applications.index') }}">{{ __('Training applications') }}</a>
                         @else
