@@ -142,6 +142,7 @@
             </div>
             <div class="page-shell footer-bottom"><span>© {{ date('Y') }} {{ __('site.institution') }}</span><span>{{ __('site.prototype') }}</span></div>
         </footer>
+        @include('partials.chatbot')
         @fluxScripts
     </body>
 </html>
